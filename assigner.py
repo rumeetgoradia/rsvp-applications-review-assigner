@@ -1,6 +1,9 @@
+import os
 import random as rnd
 
-applicantsFile = open("applicants.txt", "r")
+DIRECTORY = os.path.dirname(os.path.abspath(__file__))
+
+applicantsFile = open(os.path.join(DIRECTORY, "applicants.txt"), "r")
 applicants = []
 numApplicants = 0
 reviewsPerApplicant = 3  # this number can be changed
@@ -9,7 +12,7 @@ for line in applicantsFile:
     numApplicants += 1
 applicantsFile.close()
 
-boardFile = open("board.txt", "r")
+boardFile = open(os.path.join(DIRECTORY, "board.txt"), "r")
 boardMembers = []
 numBoard = 0
 boardAssignments = {}
@@ -33,7 +36,7 @@ while len(applicants) > 0:
     if i >= len(boardMembers):
         i = 0
 
-assignmentsFile = open("assignments.txt", "w")
+assignmentsFile = open(os.path.join(DIRECTORY, "assignments.txt"), "w")
 for boardMember in boardAssignments:
     assignmentsFile.write(boardMember + " (" + str(len(boardAssignments[boardMember])) + " assignments)" + "\n")
     for assignment in boardAssignments[boardMember]:
